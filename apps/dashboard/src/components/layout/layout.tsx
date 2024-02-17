@@ -8,14 +8,15 @@ import {
   HomeIcon,
   UsersIcon,
 } from '@heroicons/react/24/outline'
+import { Link } from '@tanstack/react-router'
 
 const navigation = [
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'User', href: '#', icon: UsersIcon, current: false },
+  { name: 'Dashboard', href: '/', icon: HomeIcon, current: true },
+  { name: 'User', href: '/user', icon: UsersIcon, current: false },
   { name: 'Locations', href: '#', icon: CalendarIcon, current: false },
   { name: 'Sensors', href: '#', icon: FolderIcon, current: false },
   { name: 'Sensor Data', href: '#', icon: DocumentDuplicateIcon, current: false },
-  { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
+  { name: 'About', href: '/about', icon: ChartPieIcon, current: false },
 ]
 const teams = [
   { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
@@ -54,15 +55,12 @@ export default function Layout({ children }: Props) {
                   <ul role="list" className="-mx-2 space-y-1">
                     {navigation.map((item) => (
                       <li key={item.name}>
-                        <a
-                          href={item.href}
-                          className={classNames(
-                            item.current
-                              ? 'bg-gray-50 text-indigo-600'
-                              : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
-                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                          )}
-                        >
+                        <Link to={item.href} className={classNames(
+                          item.current
+                            ? 'bg-gray-50 text-indigo-600'
+                            : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
+                          'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                        )}>
                           <item.icon
                             className={classNames(
                               item.current ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600',
@@ -71,7 +69,8 @@ export default function Layout({ children }: Props) {
                             aria-hidden="true"
                           />
                           {item.name}
-                        </a>
+                        </Link>
+
                       </li>
                     ))}
                   </ul>

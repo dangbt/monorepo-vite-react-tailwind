@@ -2,6 +2,10 @@
 import { Button } from "@repo/ui"
 import Table from '@/components/table/table'
 import { createColumnHelper } from '@tanstack/react-table'
+import {
+  PlusIcon,
+
+} from '@heroicons/react/24/outline'
 
 
 type Person = {
@@ -71,7 +75,7 @@ function App() {
 
   return (
     <>
-      <Button >Tạo mới</Button>
+      <Button><PlusIcon className="h-4 w-4 mr-2" />Tạo mới</Button>
       <Table columns={columns} data={defaultData} />
     </>
   )
