@@ -9,10 +9,11 @@ import {
 import { User } from '@/types/user';
 import { Link } from '@tanstack/react-router'
 import { ROUTES_PATH } from '@/constants/routes';
+import { usersQueryOptions } from '@/utils/react-query/user';
 
 export const Route = createFileRoute('/_layout/user/')({
   component: UserComponent,
-  loader: ({ context: { getUsers } }: any) => getUsers(),
+  loader: ({ context: { queryClient } }: any) => queryClient.ensureQueryData(usersQueryOptions()),
 })
 
 
@@ -48,6 +49,7 @@ const columns = [
 function UserComponent() {
   const data = Route.useLoaderData()
   const users = data.data.data?.users || []
+  console.log(users)
 
   return (
     <div className="p-2">
